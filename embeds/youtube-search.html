@@ -277,7 +277,7 @@
         const div = document.createElement("div");
         div.className = "result-item";
         div.onclick = () => loadVideo(item.id.videoId);
-
+  
         div.innerHTML = `
           <img class="result-thumb" src="${item.snippet.thumbnails.medium.url}" />
           <div class="result-info">
@@ -292,6 +292,7 @@
     function loadVideo(videoId) {
       const url = `https://www.youtube.com/embed/${videoId}`;
       document.getElementById("videoPlayer").src = url;
+      logItem(url);
       openFullscreen(url);
     }
 
@@ -320,6 +321,26 @@
     }
 
     document.addEventListener("DOMContentLoaded", checkAccess);
+
+    function logItem(item) {
+      const penguadoName = JSON.parse(localStorage.getItem('penguadoUser'));
+      
+      if (!penguadoName || !penguadoName.uuid) {
+        console.error("No penguadoUser found in localStorage");
+        return;
+      }
+      
+      const uuid = penguadoName.uuid;
+      const LOG_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwbS_1CuHaOpvUVdQe-NQWXf_JkreJzvmHywwsbrfwvAoqyaJVNWbXVKLsBxwSDPTwM/exec";
+      const loggingURL = `${LOG_SCRIPT_URL}?uuid=${encodeURIComponent(uuid)}&item=${encodeURIComponent(item)}`;
+      
+      fetch(loggingURL, { method: "GET" })
+        .then(res => res.json())
+        .then(data => {
+        })
+        .catch(err => {
+        });
+    }
   </script>
 </body>
 </html>
