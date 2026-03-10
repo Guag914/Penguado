@@ -259,6 +259,18 @@
     async function searchVideos() {
       const query = document.getElementById("searchBar").value.trim();
       if (!query) return;
+      if (query.includes("https://")){
+        let videoId = url.split('v=')[1];
+        if (videoId) {
+          const ampersandPosition = videoId.indexOf('&');
+          if (ampersandPosition !== -1) {
+            videoId = videoId.substring(0, ampersandPosition);
+          }
+
+          loadVideo(videoId);
+        }
+      }
+    }
 
       const res = await fetch(WORKER_URL, {
         method: "POST",
