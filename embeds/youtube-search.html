@@ -226,7 +226,6 @@
       <input type="text" id="searchBar" placeholder="Search for a video" />
       <div class="button-row">
           <button onclick="searchVideos()">Search</button>
-          <button onclick="href='./video-player.html'"> Use a Direct Link </button>      
       </div>
       <div class="results-container" id="results"></div>
     </div>
@@ -268,6 +267,7 @@
           }
 
           loadVideo(videoId);
+          return;
         }
       }
     
