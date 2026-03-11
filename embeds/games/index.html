@@ -555,10 +555,6 @@
                     return false; // Block further execution
                 } else {
                     console.log("Not banned: " + userIP);
-
-                // Show content after login check
-                document.getElementById('content-container').style.display = 'flex';
-                    
                     return true; // Allow site to load
                 }
             } catch (err) {
@@ -574,6 +570,8 @@
 
             const allowed = await checkBan();
             if (!allowed) return;
+
+            document.getElementById('content-container').style.display = 'flex';
 
             function embedWebsite(url, width = '100%', height = '100%') {
                 const gameFrameContainer = document.getElementById("gameFrameContainer");
