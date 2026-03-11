@@ -566,7 +566,7 @@
 
         // Check login first for instant feedback (don't waste calls on ban check if not logged in)
         (async () => {
-            checkAccess(); 
+            await checkAccess(); 
             
             const allowed = await checkBan();
             if (!allowed) return;
