@@ -246,11 +246,17 @@ async function login() {
     const url = `${LOGIN_URL}?mode=login&email=${encodeURIComponent(email)}&passwordHash=${encodeURIComponent(passwordHash)}&ip=${encodeURIComponent(ip)}&uuid=${encodeURIComponent(uuid)}`;
     const data = await jsonpRequest(url);
 
+    //Smoother redirect back to original page
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect") || "/";
+
+window.location.href = redirect;
+
     if (data.success) {
       storeUUID(data.uuid, data.name);
       showAlert("Welcome " + data.name);
       hideLoading(); // STOP LOADING
-      window.location.href = "https://penguado.top/embeds/login-redirect.html";
+      window.location.href = redirect;
     } else {
       hideLoading(); // STOP LOADING
       if (data.message === "Penguado is currently disabled for all users.") {
