@@ -525,6 +525,10 @@
             }
 
             if (userData && userData.uuid && userData.name) {
+
+                const allowed = await checkBan();
+                if (!allowed) return; //Removes showing before loading is done
+                
                 document.getElementById('welcome-msg').textContent = `Welcome, ${userData.name}!`;
                 // Show content after login check
                 document.getElementById('content-container').style.display = 'flex';
@@ -567,9 +571,6 @@
         // Check login first for instant feedback (don't waste calls on ban check if not logged in)
         (async () => {
             await checkAccess(); 
-            
-            const allowed = await checkBan();
-            if (!allowed) return;
 
             function embedWebsite(url, width = '100%', height = '100%') {
                 const gameFrameContainer = document.getElementById("gameFrameContainer");
