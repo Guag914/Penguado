@@ -297,7 +297,7 @@ function checkAccess() {
   if (userData && userData.uuid && userData.name) {
     showMainUI(userData.name);
   } else {
-    window.location.href = "https://penguado.top/embeds/login.html";
+    window.location.href = "./login.html?redirect=" + encodeURIComponent(location.href);
   }
 }
 
