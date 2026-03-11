@@ -356,7 +356,7 @@ body {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -389,6 +389,7 @@ body {
   border-radius: 8px;
   font-weight: 500;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-right a:hover {
