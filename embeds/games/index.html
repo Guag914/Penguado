@@ -564,12 +564,12 @@
             }
         }
 
-        // Run ban check, then login check, then enable features
+        // Check login first for instant feedback (don't waste calls on ban check if not logged in)
         (async () => {
+            checkAccess(); 
+            
             const allowed = await checkBan();
             if (!allowed) return;
-
-            checkAccess();
 
             function embedWebsite(url, width = '100%', height = '100%') {
                 const gameFrameContainer = document.getElementById("gameFrameContainer");
