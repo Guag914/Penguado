@@ -250,8 +250,6 @@ async function login() {
     const params = new URLSearchParams(window.location.search);
     const redirect = params.get("redirect") || "/";
 
-window.location.href = redirect;
-
     if (data.success) {
       storeUUID(data.uuid, data.name);
       showAlert("Welcome " + data.name);
