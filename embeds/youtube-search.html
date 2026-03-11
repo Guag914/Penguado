@@ -251,7 +251,7 @@
         document.getElementById('welcome-msg').textContent = `Welcome, ${userData.name}!`;
         document.getElementById('main-content').style.display = 'flex';
       } else {
-        window.location.href = "https://penguado.top/embeds/login.html";
+        window.location.href = "./login.html?redirect=" + encodeURIComponent(location.href);
       }
     }
 
