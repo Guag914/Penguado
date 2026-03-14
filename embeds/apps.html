@@ -318,18 +318,27 @@ function launchGame() {
   logItem(url);
 }
 
-function embedWebsite(url, width = "100%", height = "100%", type = "text/html") {
-  const gameFrameContainer = document.getElementById("gameFrameContainer");
-  gameFrameContainer.innerHTML = "";
-  const embedElement = document.createElement("embed");
-  embedElement.src = url;
-  embedElement.type = type;
-  embedElement.width = width;
-  embedElement.height = height;
-  embedElement.style.border = "none";
-  gameFrameContainer.appendChild(embedElement);
-  gameFrameContainer.style.display = "block";
-  document.getElementById("back-button").style.display = "block";
+function embedWebsite(url, width = '100%', height = '100%') {
+    const gameFrameContainer = document.getElementById("gameFrameContainer");
+    gameFrameContainer.innerHTML = '';
+
+    const proxyBase = "https://cf-basic-proxy.penguado-web.workers.dev/?url=";
+    const proxiedUrl = proxyBase + encodeURIComponent(url);
+
+    const frame = document.createElement('iframe');
+    frame.src = proxiedUrl;
+    frame.width = width;
+    frame.height = height;
+    frame.style.border = "none";
+    frame.allowFullscreen = true;
+
+    gameFrameContainer.appendChild(frame);
+
+    gameFrameContainer.style.display = "block";
+    document.getElementById('back-button').style.display = 'block';
+    document.body.style.overflow = "hidden";
+
+    logItem(url);
 }
 
 function goBack() {
